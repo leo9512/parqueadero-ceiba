@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento.neyderdaza.CeibaEstacionamiento.neyder.daza.operations;
+package co.com.ceiba.estacionamiento.neyderdaza.utils;
 
 public abstract class Operations {
 
@@ -43,5 +43,11 @@ public abstract class Operations {
         return (double)(daysToPay * CAR_VALUE_DAY) + (hoursToPay * CAR_VALUE_HOUR);
     }
 
+    public static int divededPerTotalHourPerDay (int parkingHours){
+        return parkingHours / TOTAL_HOURS_PER_DAY;
+    }
 
+    public static int modulePerTotalHourPerDay (int parkingHours){
+        return parkingHours % TOTAL_HOURS_PER_DAY;
+    }
 }

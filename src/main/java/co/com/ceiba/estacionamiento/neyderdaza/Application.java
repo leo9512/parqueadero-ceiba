@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento.neyderdaza.CeibaEstacionamiento.neyder.daza;
+package co.com.ceiba.estacionamiento.neyderdaza;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,14 +1,12 @@
-package co.com.ceiba.estacionamiento.neyderdaza.CeibaEstacionamiento.neyder.daza.services;
+package co.com.ceiba.estacionamiento.neyderdaza.services;
 
-import co.com.ceiba.estacionamiento.neyderdaza.CeibaEstacionamiento.neyder.daza.operations.Operations;
+import co.com.ceiba.estacionamiento.neyderdaza.utils.Operations;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
 public class ParkingCalculations {
-
-    private int TOTAL_HOURS_PER_DAY = 24;
 
     public int getHoursInParking(Date vehicleDateArrived, Date vehicleDateOuted){
 
@@ -19,14 +17,14 @@ public class ParkingCalculations {
 
     public double getValueToPayInParking(int parkingHours, String vehicleType, int engine){
 
-        double valueToPay = 0.0;
-        int daysToPay = parkingHours / TOTAL_HOURS_PER_DAY;
+        double valueToPay;
+        int daysToPay = Operations.divededPerTotalHourPerDay(parkingHours);
         int hoursToPay = 0;
 
         if(Operations.hourIsBetweenNineAndTwentyFour(parkingHours)){
             daysToPay++;
         } else{
-            hoursToPay = parkingHours % TOTAL_HOURS_PER_DAY;
+            hoursToPay = Operations.modulePerTotalHourPerDay(parkingHours);
         }
         if(Operations.isMotorcycle(vehicleType) && Operations.motorcycleExceedsEngine(engine)){
             valueToPay = Operations.calculateMotorcycleParkingWithExtraMoney(daysToPay,hoursToPay);

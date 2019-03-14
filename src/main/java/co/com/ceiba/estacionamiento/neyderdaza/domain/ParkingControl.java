@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento.neyderdaza.CeibaEstacionamiento.neyder.daza.domain;
+package co.com.ceiba.estacionamiento.neyderdaza.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
