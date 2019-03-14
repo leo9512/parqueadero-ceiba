@@ -1,6 +1,6 @@
 package co.com.ceiba.estacionamiento.neyderdaza.utils;
 
-public abstract class Operations {
+public class Operations {
 
     private static int TOTAL_HOURS_PER_DAY = 24;
     private static int HOUR_TO_BEGIN_A_DAY = 9;

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.util.Date;
@@ -17,7 +16,7 @@ public class ParkingControl {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id = UUID.randomUUID().toString();
     @NotNull
-    private Date vehicleDataArrive;
+    private Date vehicleDataArrived;
     @NotNull
     private String vehicleType;
     @NotNull
@@ -33,9 +32,8 @@ public class ParkingControl {
     @Null
     private Date vehicleDataOut;
 
-    public ParkingControl(String id, Date vehicleDataArrive, String vehicleType, String licensePlate, int engine, boolean isParking) {
-        this.id = id;
-        this.vehicleDataArrive = vehicleDataArrive;
+    public ParkingControl(Date vehicleDataArrived, String vehicleType, String licensePlate, int engine, boolean isParking) {
+        this.vehicleDataArrived = vehicleDataArrived;
         this.vehicleType = vehicleType;
         this.licensePlate = licensePlate;
         this.engine = engine;
@@ -45,20 +43,12 @@ public class ParkingControl {
     public ParkingControl() {
     }
 
-    public String getId() {
-        return id;
+    public Date getVehicleDataArrived() {
+        return vehicleDataArrived;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getVehicleDataArrive() {
-        return vehicleDataArrive;
-    }
-
-    public void setVehicleDataArrive(Date vehicleDataArrive) {
-        this.vehicleDataArrive = vehicleDataArrive;
+    public void setVehicleDataArrived(Date vehicleDataArrived) {
+        this.vehicleDataArrived = vehicleDataArrived;
     }
 
     public String getVehicleType() {
