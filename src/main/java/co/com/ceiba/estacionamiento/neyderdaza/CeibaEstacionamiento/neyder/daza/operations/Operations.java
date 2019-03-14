@@ -32,15 +32,15 @@ public abstract class Operations {
     }
 
     public static double calculateMotorcycleParkingWithExtraMoney(int daysToPay, int hoursToPay){
-        return (daysToPay * MOTORCYCLE_VALUE_DAY) + (hoursToPay * MOTORCYCLE_VALUE_HOUR) + EXTRA_MONEY_TO_PAY_FOR_CC_LIMIT;
+        return (double)(daysToPay * MOTORCYCLE_VALUE_DAY) + (hoursToPay * MOTORCYCLE_VALUE_HOUR) + EXTRA_MONEY_TO_PAY_FOR_CC_LIMIT;
     }
 
     public static double calculateMotorcycleParking(int daysToPay, int hoursToPay){
-        return (daysToPay * MOTORCYCLE_VALUE_DAY) + (hoursToPay * MOTORCYCLE_VALUE_HOUR);
+        return (double)(daysToPay * MOTORCYCLE_VALUE_DAY) + (hoursToPay * MOTORCYCLE_VALUE_HOUR);
     }
 
     public static double calculateCarParking(int daysToPay, int hoursToPay){
-        return (daysToPay * CAR_VALUE_DAY) + (hoursToPay * CAR_VALUE_HOUR);
+        return (double)(daysToPay * CAR_VALUE_DAY) + (hoursToPay * CAR_VALUE_HOUR);
     }
 
 

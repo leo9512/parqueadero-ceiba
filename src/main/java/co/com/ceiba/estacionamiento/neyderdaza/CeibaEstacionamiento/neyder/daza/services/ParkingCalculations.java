@@ -12,7 +12,7 @@ public class ParkingCalculations {
 
     public int getHoursInParking(Date vehicleDateArrived, Date vehicleDateOuted){
 
-        double diferenceInHours = (vehicleDateOuted.getTime() - vehicleDateArrived.getTime())/(60*60*1000);
+        double diferenceInHours = ((double)vehicleDateOuted.getTime() - (double)vehicleDateArrived.getTime())/(60*60*1000);
         if((diferenceInHours%1)==0){return (int) diferenceInHours;}
         else {return (int) Math.ceil(diferenceInHours);}
     }
