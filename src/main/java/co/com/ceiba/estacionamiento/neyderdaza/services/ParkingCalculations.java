@@ -8,7 +8,7 @@ import static co.com.ceiba.estacionamiento.neyderdaza.utils.Operations.*;
 
 @Service
 public class ParkingCalculations {
-    private ParkingCalculations() {
+    public ParkingCalculations() {
     }
 
     public static int getHoursInParking(Date vehicleDateArrived, Date vehicleDateOuted){
