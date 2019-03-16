@@ -11,9 +11,11 @@ public class Operations {
     private static int EXTRA_MONEY_TO_PAY_FOR_CC_LIMIT = 2000;
     private static int CAR_VALUE_DAY = 8000;
     private static int CAR_VALUE_HOUR = 1000;
-
     private static String MOTORCYCLE_TYPE = "MOTORCYCLE";
     private static String CAR_TYPE = "CAR";
+
+    private Operations() {
+    }
 
     public static boolean hourIsBetweenNineAndTwentyFour(int parkingHours){
         return ((parkingHours % TOTAL_HOURS_PER_DAY)>=HOUR_TO_BEGIN_A_DAY && (parkingHours % TOTAL_HOURS_PER_DAY)<=HOUR_TO_END_A_DAY);
@@ -43,7 +45,7 @@ public class Operations {
         return (double)(daysToPay * CAR_VALUE_DAY) + (hoursToPay * CAR_VALUE_HOUR);
     }
 
-    public static int divededPerTotalHourPerDay (int parkingHours){
+    public static int divisionPerTotalHourPerDay(int parkingHours){
         return parkingHours / TOTAL_HOURS_PER_DAY;
     }
 

@@ -14,7 +14,7 @@ public class ParkingControl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id = UUID.randomUUID().toString();
+    private Long id;
     @NotNull
     private Date vehicleDataArrived;
     @NotNull
@@ -25,11 +25,11 @@ public class ParkingControl {
     private int engine;
     @NotNull
     private boolean isParking;
-    @Null
+
     private int totalHours;
-    @Null
+
     private double valueToPay;
-    @Null
+
     private Date vehicleDataOut;
 
     public ParkingControl(Date vehicleDataArrived, String vehicleType, String licensePlate, int engine, boolean isParking) {
@@ -43,7 +43,16 @@ public class ParkingControl {
     public ParkingControl() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Date getVehicleDataArrived() {
+
         return vehicleDataArrived;
     }
 

@@ -1,6 +1,8 @@
 package co.com.ceiba.estacionamiento.neyderdaza.domain;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,11 +13,13 @@ import static org.junit.Assert.assertEquals;
 
 public class ParkingControlTest {
 
+    @Mock
+    ParkingControl parkingControl;
     @Test
     public void getVehicleLicensePlate(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl()
+        parkingControl = aParkingControl()
                 .withLicensePlate("QWE963")
                 .build();
 
@@ -31,7 +35,7 @@ public class ParkingControlTest {
 
         //Arrange
         Calendar initialCalendarDate = new GregorianCalendar(2019,12, 14, 8, 40, 40);
-        ParkingControl parkingControl = aParkingControl()
+        parkingControl = aParkingControl()
                 .withDateArrived(initialCalendarDate.getTime())
                 .build();
         //Act
@@ -45,7 +49,7 @@ public class ParkingControlTest {
     public void getVehicleEngine(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl()
+        parkingControl = aParkingControl()
                 .withEngine(1600)
                 .build();
 
@@ -60,7 +64,7 @@ public class ParkingControlTest {
     public void getVehicleIsParking(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl()
+        parkingControl = aParkingControl()
                 .withIsParking(false)
                 .build();
 
@@ -75,7 +79,7 @@ public class ParkingControlTest {
     public void getVehicleType(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl()
+        parkingControl = aParkingControl()
                 .withVehicleType("MOTORCYCLE")
                 .build();
 
@@ -90,7 +94,7 @@ public class ParkingControlTest {
     public void setVehicleType(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
         parkingControl.setVehicleType("CAR");
@@ -103,7 +107,7 @@ public class ParkingControlTest {
     public void setVehicleIsParking(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
         parkingControl.setParking(true);
@@ -116,7 +120,7 @@ public class ParkingControlTest {
     public void setVehicleEngine(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
          parkingControl.setEngine(1000);
@@ -130,7 +134,7 @@ public class ParkingControlTest {
 
         //Arrange
         Calendar initialCalendarDate = new GregorianCalendar(2019,12, 14, 8, 40, 40);
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
         //Act
         parkingControl.setVehicleDataArrived(initialCalendarDate.getTime());
 
@@ -142,7 +146,7 @@ public class ParkingControlTest {
     public void setVehicleLicensePlate(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
         parkingControl.setLicensePlate("BNM789");
@@ -155,7 +159,7 @@ public class ParkingControlTest {
     public void setVehicleTotalHours(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
         parkingControl.setTotalHours(9);
@@ -169,7 +173,7 @@ public class ParkingControlTest {
 
         //Arrange
         Calendar finalCalendarDate = new GregorianCalendar(2019,12, 14, 15, 40, 40);
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
         parkingControl.setVehicleDataOut(finalCalendarDate.getTime());
@@ -182,7 +186,7 @@ public class ParkingControlTest {
     public void setVehicleValueToPay(){
 
         //Arrange
-        ParkingControl parkingControl = aParkingControl().build();
+        parkingControl = aParkingControl().build();
 
         //Act
         parkingControl.setValueToPay(10000.0);
