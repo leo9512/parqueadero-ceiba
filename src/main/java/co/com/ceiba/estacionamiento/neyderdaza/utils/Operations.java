@@ -2,17 +2,17 @@ package co.com.ceiba.estacionamiento.neyderdaza.utils;
 
 public class Operations {
 
-    private static int TOTAL_HOURS_PER_DAY = 24;
-    private static int HOUR_TO_BEGIN_A_DAY = 9;
-    private static int HOUR_TO_END_A_DAY = 23;
-    private static int CC_LIMIT = 500;
-    private static int MOTORCYCLE_VALUE_HOUR = 500;
-    private static int MOTORCYCLE_VALUE_DAY = 4000;
-    private static int EXTRA_MONEY_TO_PAY_FOR_CC_LIMIT = 2000;
-    private static int CAR_VALUE_DAY = 8000;
-    private static int CAR_VALUE_HOUR = 1000;
-    private static String MOTORCYCLE_TYPE = "MOTORCYCLE";
-    private static String CAR_TYPE = "CAR";
+    private static final int TOTAL_HOURS_PER_DAY = 24;
+    private static final int HOUR_TO_BEGIN_A_DAY = 9;
+    private static final int HOUR_TO_END_A_DAY = 23;
+    private static final int CC_LIMIT = 500;
+    private static final int MOTORCYCLE_VALUE_HOUR = 500;
+    private static final int MOTORCYCLE_VALUE_DAY = 4000;
+    private static final int EXTRA_MONEY_TO_PAY_FOR_CC_LIMIT = 2000;
+    private static final int CAR_VALUE_DAY = 8000;
+    private static final int CAR_VALUE_HOUR = 1000;
+    private static final String MOTORCYCLE_TYPE = "MOTORCYCLE";
+    private static final String CAR_TYPE = "CAR";
 
     private Operations() {
     }

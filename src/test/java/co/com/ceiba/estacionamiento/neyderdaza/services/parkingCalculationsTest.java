@@ -1,4 +1,5 @@
 package co.com.ceiba.estacionamiento.neyderdaza.services;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -6,16 +7,17 @@ import org.mockito.Mock;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class parkingCalculationsTest {
 
     @Mock
-    ParkingCalculations parkingCalculations;
+    ParkingCalculationService parkingCalculationService;
 
     @Before
     public void setUp() throws Exception {
-        parkingCalculations = new ParkingCalculations();
+        parkingCalculationService = new ParkingCalculationService();
     }
 
     @Test
@@ -28,7 +30,7 @@ public class parkingCalculationsTest {
         Date outedDate = finalCalendarDate.getTime();
 
         //Act
-        int result = parkingCalculations.getHoursInParking(arrivedDate, outedDate);
+        int result = parkingCalculationService.getHoursInParking(arrivedDate, outedDate);
 
         //Assert
         assertEquals(6, result);
@@ -44,7 +46,7 @@ public class parkingCalculationsTest {
         Date outedDate = finalCalendarDate.getTime();
 
         //Act
-        int result = parkingCalculations.getHoursInParking(arrivedDate, outedDate);
+        int result = parkingCalculationService.getHoursInParking(arrivedDate, outedDate);
 
         //Assert
         assertEquals(7, result);
@@ -59,7 +61,7 @@ public class parkingCalculationsTest {
         String vehicleType = "CAR";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(6000.0, result,0.001);
     }
@@ -73,7 +75,7 @@ public class parkingCalculationsTest {
         String vehicleType = "CAR";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(8000.0, result,0.001);
     }
@@ -87,7 +89,7 @@ public class parkingCalculationsTest {
         String vehicleType = "CAR";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(14000.0, result,0.001);
     }
@@ -101,7 +103,7 @@ public class parkingCalculationsTest {
         String vehicleType = "MOTORCYCLE";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(5000.0, result,0.001);
     }
@@ -114,7 +116,7 @@ public class parkingCalculationsTest {
         String vehicleType = "MOTORCYCLE";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(3000.0, result,0.001);
     }
@@ -128,7 +130,7 @@ public class parkingCalculationsTest {
         String vehicleType = "MOTORCYCLE";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(4000.0, result,0.001);
     }
@@ -142,7 +144,7 @@ public class parkingCalculationsTest {
         String vehicleType = "MOTORCYCLE";
 
         //Act
-        double result = parkingCalculations.getValueToPayInParking(parkingHours, vehicleType, engine);
+        double result = parkingCalculationService.getValueToPayInParking(parkingHours, vehicleType, engine);
         //Assert
         assertEquals(7000.0, result,0.001);
     }

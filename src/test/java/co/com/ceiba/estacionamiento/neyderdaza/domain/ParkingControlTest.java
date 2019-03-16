@@ -1,6 +1,5 @@
 package co.com.ceiba.estacionamiento.neyderdaza.domain;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
@@ -8,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.*;
+import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.aParkingControl;
 import static org.junit.Assert.assertEquals;
 
 public class ParkingControlTest {
