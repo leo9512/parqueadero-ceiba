@@ -18,11 +18,11 @@ public class CalendarService {
         return Calendar.getInstance(locale).getTime();
     }
 
-    public static boolean isMonday(){
+    public static boolean isMonday() {
         return Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY;
-}
+    }
 
-    public static boolean isSunday(){
+    public static boolean isSunday() {
         return Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
     }
 }

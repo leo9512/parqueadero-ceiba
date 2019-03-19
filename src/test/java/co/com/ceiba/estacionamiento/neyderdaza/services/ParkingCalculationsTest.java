@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
-public class parkingCalculationsTest {
+public class ParkingCalculationsTest {
 
     @Mock
     ParkingCalculationService parkingCalculationService;

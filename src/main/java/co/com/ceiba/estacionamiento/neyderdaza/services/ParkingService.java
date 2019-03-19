@@ -17,13 +17,18 @@ import static co.com.ceiba.estacionamiento.neyderdaza.utils.Vehicles.MOTORCYCLE;
 @Service
 public class ParkingService {
     private ParkingControlRepository parkingControlRepository;
+    private CalendarService calendarService;
+    private ParkingCalculationService parkingCalculationService;
     private static final int MAX_CARS_IN_PARKING = 20;
     private static final int MAX_MOTORCYCLE_IN_PARKING = 10;
-    private static final String NOT_MORE_PLACES = "Vehicle cannot enter, there are not more cells available for motorcycles";
+    private static final String NOT_MORE_PLACES_FOR_CARS = "Vehicle cannot enter, there are not more cells available for cars";
+    private static final String NOT_MORE_PLACES_FOR_MOTORCYCLES = "Vehicle cannot enter, there are not more cells available for motorcycles";
     private static final String NOT_ENTER_VEHICLE = "Vehicle cannot enter, license begin for A and today is not available day for it";
 
-    public ParkingService(ParkingControlRepository parkingControlRepository) {
+    public ParkingService(ParkingControlRepository parkingControlRepository, CalendarService calendarService, ParkingCalculationService parkingCalculationService) {
         this.parkingControlRepository = parkingControlRepository;
+        this.calendarService = calendarService;
+        this.parkingCalculationService = parkingCalculationService;
     }
 
     public List<ParkingControl> findVehiclesAreParked() {
@@ -61,19 +66,19 @@ public class ParkingService {
         return parkingControlRepository.save(parkingControl);
     }
 
-    private void validateParkingConditions(ParkingControl parkingControl) {
+    public void validateParkingConditions(ParkingControl parkingControl) {
         canEnterVehicle(parkingControl);
         if(parkingControl.getVehicleType().equalsIgnoreCase(CAR.toString())
                 && howManyVehiclesAreParking(CAR.toString()) >= MAX_CARS_IN_PARKING){
-            throw new ParkingControlException(NOT_MORE_PLACES);
+            throw new ParkingControlException(NOT_MORE_PLACES_FOR_CARS);
         }
         if(parkingControl.getVehicleType().equalsIgnoreCase(MOTORCYCLE.toString()) &&
                 howManyVehiclesAreParking(MOTORCYCLE.toString())>= MAX_MOTORCYCLE_IN_PARKING){
-            throw new ParkingControlException(NOT_MORE_PLACES);
+            throw new ParkingControlException(NOT_MORE_PLACES_FOR_MOTORCYCLES);
         }
     }
 
-    private int howManyVehiclesAreParking(String vehicleType) {
+    public int howManyVehiclesAreParking(String vehicleType) {
         List<ParkingControl> vehiclesAreParked = new ArrayList<>();
         parkingControlRepository.findByIsParking(true).forEach(vehiclesAreParked::add);
 
@@ -83,18 +88,18 @@ public class ParkingService {
         return vehiclesParkingForType.size();
     }
 
-    private boolean canEnterVehicle(ParkingControl parkingControl) {
-        if (licenseBigintWithA(parkingControl) && !isAvailableDay()) {
+    public boolean canEnterVehicle(ParkingControl parkingControl) {
+        if (licenseBigintWithA(parkingControl) && isNotAvailableDay()) {
             throw new ParkingControlException(NOT_ENTER_VEHICLE);
         }
         return true;
     }
 
-    private boolean isAvailableDay() {
-        return CalendarService.isMonday() || CalendarService.isSunday() ;
+    public boolean licenseBigintWithA(ParkingControl parkingControl) {
+        return parkingControl.getLicensePlate().toUpperCase().startsWith("A");
     }
 
-    private boolean licenseBigintWithA(ParkingControl parkingControl) {
-        return parkingControl.getLicensePlate().toUpperCase().startsWith("A");
+    public boolean isNotAvailableDay() {
+        return CalendarService.isMonday() || CalendarService.isSunday() ;
     }
 }
