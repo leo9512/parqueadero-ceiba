@@ -16,7 +16,7 @@ public class CalendarServiceTest {
     CalendarService calendarService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         calendarService = new CalendarService();
     }
 

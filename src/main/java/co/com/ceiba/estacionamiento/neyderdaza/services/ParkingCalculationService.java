@@ -1,5 +1,6 @@
 package co.com.ceiba.estacionamiento.neyderdaza.services;
 
+import co.com.ceiba.estacionamiento.neyderdaza.utils.Operations;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ import static co.com.ceiba.estacionamiento.neyderdaza.utils.Operations.*;
 
 @Service
 public class ParkingCalculationService {
+    private static Operations operations = new Operations();
     protected ParkingCalculationService() {
     }
 
@@ -21,21 +23,21 @@ public class ParkingCalculationService {
     public double getValueToPayInParking(int parkingHours, String vehicleType, int engine){
 
         double valueToPay;
-        int daysToPay = divisionPerTotalHourPerDay(parkingHours);
+        int daysToPay = operations.divisionPerTotalHourPerDay(parkingHours);
         int hoursToPay = 0;
 
-        if(hourIsBetweenNineAndTwentyFour(parkingHours)){
+        if(operations.hourIsBetweenNineAndTwentyFour(parkingHours)){
             daysToPay++;
         } else{
-            hoursToPay = modulePerTotalHourPerDay(parkingHours);
+            hoursToPay = operations.modulePerTotalHourPerDay(parkingHours);
         }
-        if(isMotorcycle(vehicleType) && motorcycleExceedsEngine(engine)){
-            valueToPay = calculateMotorcycleParkingWithExtraMoney(daysToPay,hoursToPay);
+        if(operations.isMotorcycle(vehicleType) && operations.motorcycleExceedsEngine(engine)){
+            valueToPay = operations.calculateMotorcycleParkingWithExtraMoney(daysToPay,hoursToPay);
         }else {
-            valueToPay = calculateMotorcycleParking(daysToPay,hoursToPay);
+            valueToPay = operations.calculateMotorcycleParking(daysToPay,hoursToPay);
         }
-        if(isCar(vehicleType)){
-            valueToPay = calculateCarParking(daysToPay,hoursToPay);
+        if(operations.isCar(vehicleType)){
+            valueToPay = operations.calculateCarParking(daysToPay,hoursToPay);
         }
         return valueToPay;
     }

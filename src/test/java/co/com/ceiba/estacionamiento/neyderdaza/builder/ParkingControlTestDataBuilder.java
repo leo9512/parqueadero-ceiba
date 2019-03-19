@@ -20,6 +20,7 @@ public class ParkingControlTestDataBuilder {
     private Date vehicleDataOut;
 
     private Calendar initialCalendarDate = new GregorianCalendar(2019,3, 14, 8, 40, 40);
+    private static final Operations operations = new Operations();
 
     public ParkingControlTestDataBuilder(){
         this.id = 20L;
@@ -77,7 +78,7 @@ public class ParkingControlTestDataBuilder {
     }
 
     public ParkingControl build(){
-        if (Operations.isCar(vehicleType)){
+        if (operations.isCar(vehicleType)){
             return new ParkingControl(vehicleDataArrived,vehicleType,licensePlate,engine,isParking);
         }
         return new ParkingControl(vehicleDataArrived,vehicleType,licensePlate,engine,isParking);
