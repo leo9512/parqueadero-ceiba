@@ -18,12 +18,10 @@ import java.util.List;
 
 import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.aParkingControl;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = NONE)
 
 public class ParkingControlRepositoryTest {
     @Autowired
@@ -35,6 +33,8 @@ public class ParkingControlRepositoryTest {
     @Test
     public void verifyFindAllVehiclesAreParked() {
         ParkingControl car = aParkingControl()
+                .withId(89L)
+                .withLicensePlate("OLI098")
                 .build();
         entityManager.persist(car);
         entityManager.flush();
