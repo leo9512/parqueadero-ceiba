@@ -14,9 +14,6 @@ public class Operations {
     private static final String MOTORCYCLE_TYPE = "MOTORCYCLE";
     private static final String CAR_TYPE = "CAR";
 
-    public Operations() {
-    }
-
     public boolean hourIsBetweenNineAndTwentyFour(int parkingHours){
         return ((parkingHours % TOTAL_HOURS_PER_DAY)>=HOUR_TO_BEGIN_A_DAY && (parkingHours % TOTAL_HOURS_PER_DAY)<=HOUR_TO_END_A_DAY);
     }

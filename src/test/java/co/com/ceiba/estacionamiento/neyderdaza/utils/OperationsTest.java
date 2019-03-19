@@ -25,6 +25,11 @@ public class OperationsTest {
         assertFalse(result);
     }
     @Test
+    public void verifyThatVehicleIsNotInTheParkingBetweenNineAndTwentyFourHoursCaseTwo(){
+        boolean result = operations.hourIsBetweenNineAndTwentyFour(26);
+        assertFalse(result);
+    }
+    @Test
     public void verifyThatVehicleIsInTheParkingSixHours(){
         boolean result = operations.hourIsBetweenNineAndTwentyFour(6);
         assertFalse(result);
