@@ -11,14 +11,14 @@ public class ParkingCalculationService {
     protected ParkingCalculationService() {
     }
 
-    public static int getHoursInParking(Date vehicleDateArrived, Date vehicleDateOuted){
+    public int getHoursInParking(Date vehicleDateArrived, Date vehicleDateOuted){
 
         double diferenceInHours = ((double)vehicleDateOuted.getTime() - (double)vehicleDateArrived.getTime())/(60*60*1000);
         if((diferenceInHours%1)==0){return (int) diferenceInHours;}
         else {return (int) Math.ceil(diferenceInHours);}
     }
 
-    public static double getValueToPayInParking(int parkingHours, String vehicleType, int engine){
+    public double getValueToPayInParking(int parkingHours, String vehicleType, int engine){
 
         double valueToPay;
         int daysToPay = divisionPerTotalHourPerDay(parkingHours);

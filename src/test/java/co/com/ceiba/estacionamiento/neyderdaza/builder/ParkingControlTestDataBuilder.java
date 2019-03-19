@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 
 public class ParkingControlTestDataBuilder {
 
+    private Long id;
     private Date vehicleDataArrived;
     private String vehicleType;
     private String licensePlate;
@@ -21,12 +22,33 @@ public class ParkingControlTestDataBuilder {
     private Calendar initialCalendarDate = new GregorianCalendar(2019,3, 14, 8, 40, 40);
 
     public ParkingControlTestDataBuilder(){
+        this.id = 20L;
         this.vehicleDataArrived = initialCalendarDate.getTime();
         this.vehicleType = "CAR";
         this.licensePlate = "ABC123";
         this.engine = 600;
         this.isParking = true;
 
+    }
+
+    public ParkingControlTestDataBuilder withId(Long id){
+        this.id = id;
+        return this;
+    }
+
+    public ParkingControlTestDataBuilder withDataOut(Date dateOut){
+        this.vehicleDataOut = dateOut;
+        return this;
+    }
+
+    public ParkingControlTestDataBuilder withTotalHours (int totalHours){
+        this.totalHours = totalHours;
+        return this;
+    }
+
+    public ParkingControlTestDataBuilder withValueToPay (double valueToPay){
+        this.valueToPay = valueToPay;
+        return this;
     }
 
     public ParkingControlTestDataBuilder withDateArrived(Date dateArrived){

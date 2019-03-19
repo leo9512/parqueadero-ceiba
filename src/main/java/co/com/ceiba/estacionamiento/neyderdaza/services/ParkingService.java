@@ -39,15 +39,15 @@ public class ParkingService {
 
     public ParkingControl outsideVehicle (ParkingControl parkingControl){
         parkingControl
-                .setVehicleDataOut(CalendarService
+                .setVehicleDataOut(calendarService
                 .getActualDate());
         parkingControl
-                .setTotalHours(ParkingCalculationService
+                .setTotalHours(parkingCalculationService
                 .getHoursInParking(parkingControl
                         .getVehicleDataArrived(),parkingControl
                         .getVehicleDataOut()));
         parkingControl
-                .setValueToPay(ParkingCalculationService
+                .setValueToPay(parkingCalculationService
                         .getValueToPayInParking(parkingControl
                                 .getTotalHours(),parkingControl
                                 .getVehicleType(),parkingControl
@@ -66,7 +66,7 @@ public class ParkingService {
         return parkingControlRepository.save(parkingControl);
     }
 
-    public void validateParkingConditions(ParkingControl parkingControl) {
+    public boolean validateParkingConditions(ParkingControl parkingControl) {
         canEnterVehicle(parkingControl);
         if(parkingControl.getVehicleType().equalsIgnoreCase(CAR.toString())
                 && howManyVehiclesAreParking(CAR.toString()) >= MAX_CARS_IN_PARKING){
@@ -76,6 +76,7 @@ public class ParkingService {
                 howManyVehiclesAreParking(MOTORCYCLE.toString())>= MAX_MOTORCYCLE_IN_PARKING){
             throw new ParkingControlException(NOT_MORE_PLACES_FOR_MOTORCYCLES);
         }
+        return true;
     }
 
     public int howManyVehiclesAreParking(String vehicleType) {
@@ -100,6 +101,6 @@ public class ParkingService {
     }
 
     public boolean isNotAvailableDay() {
-        return CalendarService.isMonday() || CalendarService.isSunday() ;
+        return calendarService.isMonday() || calendarService.isSunday() ;
     }
 }

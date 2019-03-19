@@ -14,15 +14,15 @@ public class CalendarService {
 
     private static Locale locale = new Locale("es", "CO");
 
-    public static Date getActualDate() {
+    public  Date getActualDate() {
         return Calendar.getInstance(locale).getTime();
     }
 
-    public static boolean isMonday() {
+    public  boolean isMonday() {
         return Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY;
     }
 
-    public static boolean isSunday() {
+    public  boolean isSunday() {
         return Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
     }
 }
