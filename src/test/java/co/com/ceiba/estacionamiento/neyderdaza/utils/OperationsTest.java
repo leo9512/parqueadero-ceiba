@@ -20,6 +20,11 @@ public class OperationsTest {
         assertTrue(result);
     }
     @Test
+    public void verifyThatVehicleIsNotInTheParkingBetweenNineAndTwentyFourHours(){
+        boolean result = operations.hourIsBetweenNineAndTwentyFour(6);
+        assertFalse(result);
+    }
+    @Test
     public void verifyThatVehicleIsInTheParkingSixHours(){
         boolean result = operations.hourIsBetweenNineAndTwentyFour(6);
         assertFalse(result);
