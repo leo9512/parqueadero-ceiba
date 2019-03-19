@@ -78,10 +78,11 @@ public class ParkingControlTestDataBuilder {
     }
 
     public ParkingControl build(){
-        if (operations.isCar(vehicleType)){
             return new ParkingControl(vehicleDataArrived,vehicleType,licensePlate,engine,isParking);
-        }
-        return new ParkingControl(vehicleDataArrived,vehicleType,licensePlate,engine,isParking);
+    }
+
+    public ParkingControl buildComplete(){
+        return new ParkingControl( id, vehicleDataArrived, vehicleType, licensePlate, engine, isParking, totalHours, valueToPay, vehicleDataOut);
     }
 
     public static ParkingControlTestDataBuilder aParkingControl(){

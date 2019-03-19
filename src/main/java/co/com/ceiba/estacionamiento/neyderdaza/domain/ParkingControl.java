@@ -38,6 +38,18 @@ public class ParkingControl {
         this.isParking = isParking;
     }
 
+    public ParkingControl(Long id, Date vehicleDataArrived, String vehicleType, String licensePlate,int engine, boolean isParking, int totalHours, double valueToPay, Date vehicleDataOut) {
+        this.id = id;
+        this.vehicleDataArrived = vehicleDataArrived;
+        this.vehicleType = vehicleType;
+        this.licensePlate = licensePlate;
+        this.engine = engine;
+        this.isParking = isParking;
+        this.totalHours = totalHours;
+        this.valueToPay = valueToPay;
+        this.vehicleDataOut = vehicleDataOut;
+    }
+
     public ParkingControl() {
     }
 
