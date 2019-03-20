@@ -90,7 +90,7 @@ public class ParkingService {
     }
 
     public boolean canEnterVehicle(ParkingControl parkingControl) {
-        if (licenseBigintWithA(parkingControl) && isNotAvailableDay()) {
+        if (licenseBigintWithA(parkingControl) && !isAvailableDay()) {
             throw new ParkingControlException(NOT_ENTER_VEHICLE);
         }
         return true;
@@ -100,7 +100,7 @@ public class ParkingService {
         return parkingControl.getLicensePlate().toUpperCase().startsWith("A");
     }
 
-    public boolean isNotAvailableDay() {
+    public boolean isAvailableDay() {
         return calendarService.isMonday() || calendarService.isSunday() ;
     }
 }

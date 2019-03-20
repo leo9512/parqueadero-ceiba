@@ -100,7 +100,7 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void vehicleCanNotEnterIfLicenseBigintWithATheSundayAndMonday(){
+    public void vehicleCanOnlyEnterTheSundayAndMondayIfLicenseBigintWithA(){
         //Arrange
         parkingControl = aParkingControl()
                 .withLicensePlate("ACD123")
@@ -110,7 +110,7 @@ public class ParkingServiceTest {
                 .build();
 
         ParkingService parkingServiceSpy = Mockito.spy(parkingService);
-        doReturn(true).when(parkingServiceSpy).isNotAvailableDay();
+        doReturn(false).when(parkingServiceSpy).isAvailableDay();
 
         try {
             //Act
@@ -133,7 +133,7 @@ public class ParkingServiceTest {
                 .build();
 
         ParkingService parkingServiceSpy = Mockito.spy(parkingService);
-        doReturn(false).when(parkingServiceSpy).isNotAvailableDay();
+        doReturn(true).when(parkingServiceSpy).isAvailableDay();
 
         //Act
         boolean result = parkingServiceSpy.canEnterVehicle(parkingControl);
@@ -209,7 +209,7 @@ public class ParkingServiceTest {
         parkingService = new ParkingService(parkingControlRepository, calendarService, parkingCalculationService);
 
         //Act
-        boolean result = parkingService.isNotAvailableDay();
+        boolean result = parkingService.isAvailableDay();
 
         //Assert
         assertFalse(result);
