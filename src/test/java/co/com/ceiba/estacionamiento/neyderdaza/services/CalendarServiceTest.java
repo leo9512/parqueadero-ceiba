@@ -1,15 +1,18 @@
 package co.com.ceiba.estacionamiento.neyderdaza.services;
 
+import co.com.ceiba.estacionamiento.neyderdaza.utils.ParkingControlException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+import java.util.GregorianCalendar;
 
+import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 
 public class CalendarServiceTest {
@@ -61,5 +64,28 @@ public class CalendarServiceTest {
         boolean result = calendarService.isSunday();
 
         assertEquals(expected,result);
+    }
+
+    @Test
+    public void verifyCorrectDateOfConverter(){
+        //Arrange
+        Calendar initialCalendarDate = new GregorianCalendar(2019,Calendar.MARCH, 19, 12, 30, 30);
+        Date expected = initialCalendarDate.getTime();
+
+        //Act
+        Date result = calendarService.stringToDate("19-mar-2019 12:30:30");
+        //Assert
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void verifyExceptionOfConverter(){
+
+        try{
+        calendarService.stringToDate("Soy un error");
+        fail();
+        }catch (ParkingControlException e){
+            assertEquals("Invalidate date format", e.getMessage());
+        }
     }
 }

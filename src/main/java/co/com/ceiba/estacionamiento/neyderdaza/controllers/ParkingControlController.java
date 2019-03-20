@@ -30,13 +30,13 @@ public class ParkingControlController {
     @PatchMapping("/upDateVehicle/{id}")
     @ResponseBody
     ParkingControl outVehicle(@PathVariable Long id){
-        ParkingControl parkingControl1;
+        ParkingControl parkingControl1 = new ParkingControl();
         Optional<ParkingControl> parkingConsult = parkingService.findVehicle(id);
         if(parkingConsult.isPresent()){
             parkingControl1= parkingConsult.get();
         }
         else {
-            throw new ParkingControlException("Vehicle not available");
+            return parkingControl1;
         }
 
         return parkingService.outsideVehicle(parkingControl1);

@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.*;
 import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.aParkingControl;
+import static junit.framework.TestCase.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -112,16 +113,34 @@ public class ParkingControlControllerTest {
         when(parkingCalculationService.getValueToPayInParking(Mockito.anyInt(),Mockito.anyString(), Mockito.anyInt())).thenReturn(6000.0);
 
         //Act
-        MvcResult esperado =mockMvc.perform(patch("/upDateVehicle/1"))
+        mockMvc.perform(patch("/upDateVehicle/1"))
                 .andExpect(status().isOk())
                 //Assert
                 .andExpect(jsonPath("$.licensePlate").value("POL675"))
                 .andExpect(jsonPath("$.valueToPay").value("6000.0"))
                 .andExpect(jsonPath("$.totalHours").value("6"))
-                .andExpect(jsonPath("$.parking").value("false"))
-                .andReturn();
-        String content = esperado.getResponse().getContentAsString();
-        System.out.println(content);
+                .andExpect(jsonPath("$.parking").value("false"));
+    }
 
+    @Test
+    public void exitNonExistentCarInParking() throws Exception {
+        //Arrange
+        Optional<ParkingControl> optionalParkingControlEnter = Optional.empty();
+
+        when(parkingControlRepository.findById(Mockito.anyLong())).thenReturn(optionalParkingControlEnter);
+
+            //Act
+        MvcResult result = mockMvc.perform(patch("/upDateVehicle/1")) .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Gson transformer = new Gson();
+        ParkingControl p = transformer.fromJson(content, ParkingControl.class);
+        System.out.println(p.getVehicleType());
+        //Assert
+        assertTrue(p.getVehicleType() == null);
+        assertTrue(p.getLicensePlate()==null);
+        assertTrue(p.getVehicleDataArrived()==null);
+        assertTrue(p.getVehicleDataOut()==null);
+        assertTrue(p.isParking()==false);
+        assertTrue(p.getId()==null);
     }
 }
