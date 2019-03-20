@@ -5,15 +5,11 @@ import co.com.ceiba.estacionamiento.neyderdaza.utils.Vehicles;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.aParkingControl;
@@ -57,21 +53,19 @@ public class ParkingControlRepositoryTest {
 
     @Test
     public void verifyUpdateVehicle(){
-        Calendar initialCalendarDate = new GregorianCalendar(2019,3, 19, 6, 30, 30);
-        Calendar finalCalendarDate = new GregorianCalendar(2019, 3, 19, 12,30, 30);
-        Date carDateArrived = initialCalendarDate.getTime();
-        Date carDateOuted = finalCalendarDate.getTime();
+        String carDateArrived = "2019-mar-19 06:30:30";
+        String carDateOuted = "2019-mar-19 12:30:30";
         ParkingControl carExpected = aParkingControl()
                 .withId(40L)
                 .withLicensePlate("POI095")
                 .withVehicleType(Vehicles.CAR.toString())
                 .withEngine(200)
-                .withIsParking(false)
                 .withDateArrived(carDateArrived)
-                .withDataOut(carDateOuted)
-                .withTotalHours(6)
-                .withValueToPay(6000.0)
-                .buildComplete();
+                .build();
+        carExpected.setValueToPay(6000.0);
+        carExpected.setVehicleDataOut(carDateOuted);
+        carExpected.setParking(false);
+        carExpected.setTotalHours(6);
 
         ParkingControl vehicleParked = parkingControlRepository.save(carExpected);
         assertThat(vehicleParked.getLicensePlate()).isEqualTo("POI095");

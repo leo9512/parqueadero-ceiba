@@ -1,6 +1,7 @@
 package co.com.ceiba.estacionamiento.neyderdaza.builder;
 
 import co.com.ceiba.estacionamiento.neyderdaza.domain.ParkingControl;
+import co.com.ceiba.estacionamiento.neyderdaza.services.CalendarService;
 import co.com.ceiba.estacionamiento.neyderdaza.utils.Operations;
 
 import java.util.Calendar;
@@ -10,21 +11,21 @@ import java.util.GregorianCalendar;
 public class ParkingControlTestDataBuilder {
 
     private Long id;
-    private Date vehicleDataArrived;
+    private String vehicleDataArrived;
     private String vehicleType;
     private String licensePlate;
     private int engine;
     private boolean isParking;
     private int totalHours;
     private double valueToPay;
-    private Date vehicleDataOut;
+    private String vehicleDataOut;
 
     private Calendar initialCalendarDate = new GregorianCalendar(2019,3, 14, 8, 40, 40);
     private static final Operations operations = new Operations();
 
     public ParkingControlTestDataBuilder(){
         this.id = 20L;
-        this.vehicleDataArrived = initialCalendarDate.getTime();
+        this.vehicleDataArrived = "2019-3-20 07:12:39";
         this.vehicleType = "CAR";
         this.licensePlate = "ABC123";
         this.engine = 600;
@@ -37,7 +38,7 @@ public class ParkingControlTestDataBuilder {
         return this;
     }
 
-    public ParkingControlTestDataBuilder withDataOut(Date dateOut){
+    public ParkingControlTestDataBuilder withDataOut(String dateOut){
         this.vehicleDataOut = dateOut;
         return this;
     }
@@ -52,7 +53,7 @@ public class ParkingControlTestDataBuilder {
         return this;
     }
 
-    public ParkingControlTestDataBuilder withDateArrived(Date dateArrived){
+    public ParkingControlTestDataBuilder withDateArrived(String dateArrived){
         this.vehicleDataArrived = dateArrived;
         return this;
     }
@@ -80,11 +81,6 @@ public class ParkingControlTestDataBuilder {
     public ParkingControl build(){
             return new ParkingControl(vehicleDataArrived,vehicleType,licensePlate,engine,isParking);
     }
-
-    public ParkingControl buildComplete(){
-        return new ParkingControl( id, vehicleDataArrived, vehicleType, licensePlate, engine, isParking, totalHours, valueToPay, vehicleDataOut);
-    }
-
     public static ParkingControlTestDataBuilder aParkingControl(){
         return new ParkingControlTestDataBuilder();
     }

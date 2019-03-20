@@ -3,6 +3,7 @@ package co.com.ceiba.estacionamiento.neyderdaza.controllers;
 import co.com.ceiba.estacionamiento.neyderdaza.domain.ParkingControl;
 import co.com.ceiba.estacionamiento.neyderdaza.dto.ParkingControlDTO;
 import co.com.ceiba.estacionamiento.neyderdaza.services.ParkingService;
+import co.com.ceiba.estacionamiento.neyderdaza.utils.ParkingControlException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +27,16 @@ public class ParkingControlController {
 
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
-    @PatchMapping("/upDateVehicles/{id}")
+    @PatchMapping("/upDateVehicle/{id}")
+    @ResponseBody
     ParkingControl outVehicle(@PathVariable Long id){
-        ParkingControl parkingControl1= new ParkingControl();
+        ParkingControl parkingControl1;
         Optional<ParkingControl> parkingConsult = parkingService.findVehicle(id);
         if(parkingConsult.isPresent()){
             parkingControl1= parkingConsult.get();
+        }
+        else {
+            throw new ParkingControlException("Vehicle not available");
         }
 
         return parkingService.outsideVehicle(parkingControl1);
@@ -39,6 +44,7 @@ public class ParkingControlController {
 
     @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     @PostMapping("/addVehicle")
     ParkingControl enterVehicle(@RequestBody ParkingControlDTO dto){
         ParkingControl parkingControl = new ParkingControl();

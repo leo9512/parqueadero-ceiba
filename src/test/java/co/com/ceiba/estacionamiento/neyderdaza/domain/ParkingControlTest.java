@@ -2,11 +2,6 @@ package co.com.ceiba.estacionamiento.neyderdaza.domain;
 
 import org.junit.Test;
 import org.mockito.Mock;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.aParkingControl;
 import static org.junit.Assert.assertEquals;
 
@@ -33,15 +28,14 @@ public class ParkingControlTest {
     public void getVehicleDataArrived(){
 
         //Arrange
-        Calendar initialCalendarDate = new GregorianCalendar(2019,12, 14, 8, 40, 40);
         parkingControl = aParkingControl()
-                .withDateArrived(initialCalendarDate.getTime())
+                .withDateArrived("2019-mar-20 07:12:39")
                 .build();
         //Act
-        Date result = parkingControl.getVehicleDataArrived();
+        String result = parkingControl.getVehicleDataArrived();
 
         //Assert
-        assertEquals(initialCalendarDate.getTime(),result);
+        assertEquals("2019-mar-20 07:12:39",result);
     }
 
     @Test
@@ -132,13 +126,12 @@ public class ParkingControlTest {
     public void setVehicleDataArrived(){
 
         //Arrange
-        Calendar initialCalendarDate = new GregorianCalendar(2019,12, 14, 8, 40, 40);
         parkingControl = aParkingControl().build();
         //Act
-        parkingControl.setVehicleDataArrived(initialCalendarDate.getTime());
+        parkingControl.setVehicleDataArrived("2019-mar-20 07:12:39");
 
         //Assert
-        assertEquals(initialCalendarDate.getTime(),parkingControl.getVehicleDataArrived());
+        assertEquals("2019-mar-20 07:12:39",parkingControl.getVehicleDataArrived());
     }
 
     @Test
@@ -171,14 +164,13 @@ public class ParkingControlTest {
     public void setVehicleDateOuted(){
 
         //Arrange
-        Calendar finalCalendarDate = new GregorianCalendar(2019,12, 14, 15, 40, 40);
         parkingControl = aParkingControl().build();
 
         //Act
-        parkingControl.setVehicleDataOut(finalCalendarDate.getTime());
+        parkingControl.setVehicleDataOut("2019-mar-20 07:12:39");
 
         //Assert
-        assertEquals(finalCalendarDate.getTime(),parkingControl.getVehicleDataOut());
+        assertEquals("2019-mar-20 07:12:39",parkingControl.getVehicleDataOut());
     }
 
     @Test

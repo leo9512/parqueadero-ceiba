@@ -43,9 +43,9 @@ public class ParkingService {
                 .getActualDate());
         parkingControl
                 .setTotalHours(parkingCalculationService
-                .getHoursInParking(parkingControl
-                        .getVehicleDataArrived(),parkingControl
-                        .getVehicleDataOut()));
+                .getHoursInParking(
+                        calendarService.stringToDate(parkingControl.getVehicleDataArrived()),
+                        calendarService.stringToDate(parkingControl.getVehicleDataOut())));
         parkingControl
                 .setValueToPay(parkingCalculationService
                         .getValueToPayInParking(parkingControl

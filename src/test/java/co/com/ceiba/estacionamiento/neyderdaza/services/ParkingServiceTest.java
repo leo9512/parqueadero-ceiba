@@ -257,8 +257,8 @@ public class ParkingServiceTest {
         //Arrange
         Calendar initialCalendarDate = new GregorianCalendar(2019,3, 19, 6, 30, 30);
         Calendar finalCalendarDate = new GregorianCalendar(2019, 3, 19, 12,30, 30);
-        Date carDateArrived = initialCalendarDate.getTime();
-        Date carDateOuted = finalCalendarDate.getTime();
+        String carDateArrived = "2019-mar-19 6:30:30";
+        String carDateOuted = "2019-mar-19 12:30:30";
         parkingControl = aParkingControl()
                 .withId(40L)
                 .withLicensePlate("POI095")
@@ -288,7 +288,7 @@ public class ParkingServiceTest {
                 .willReturn(carDateOuted);
         given(parkingCalculationService.getValueToPayInParking(10,"CAR",100))
                 .willReturn(6000.0);
-        given(parkingCalculationService.getHoursInParking(carDateArrived,carDateOuted))
+        given(parkingCalculationService.getHoursInParking(calendarService.stringToDate(carDateArrived),calendarService.stringToDate(carDateOuted)))
                 .willReturn(6);
         given(parkingControlRepository.save(parkingControl))
                 .willReturn(carExpected);

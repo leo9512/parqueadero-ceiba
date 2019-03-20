@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -23,14 +25,14 @@ public class CalendarServiceTest {
     @Test
     public void verifyGetActualDayIsCorrectly(){
         //Arrange
-        Locale localeDate = new Locale("es", "CO");
-        Date expected = Calendar.getInstance(localeDate).getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+        String expected = dateFormat.format(Calendar.getInstance().getTime());
 
         //Act
-        Date result = calendarService.getActualDate();
+        String result = calendarService.getActualDate();
 
         //Assert
-        assertEquals(expected.getDay(),result.getDay());
+        assertEquals(expected,result);
     }
 
     @Test

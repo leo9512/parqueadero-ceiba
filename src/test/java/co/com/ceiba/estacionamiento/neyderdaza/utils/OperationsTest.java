@@ -48,7 +48,7 @@ public class OperationsTest {
         assertTrue(result);
     }
     @Test
-    public void verifyThatVehicleDoesNotCar(){
+    public void verifyThatVehicleIsNotCar(){
         boolean result = operations.isCar(Vehicles.MOTORCYCLE.toString());
         assertFalse(result);
     }

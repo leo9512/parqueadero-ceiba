@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 public class ParkingControl {
@@ -14,7 +13,7 @@ public class ParkingControl {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
-    private Date vehicleDataArrived;
+    private String vehicleDataArrived;
     @NotNull
     private String vehicleType;
     @NotNull
@@ -28,26 +27,14 @@ public class ParkingControl {
 
     private double valueToPay;
 
-    private Date vehicleDataOut;
+    private String vehicleDataOut;
 
-    public ParkingControl(Date vehicleDataArrived, String vehicleType, String licensePlate, int engine, boolean isParking) {
+    public ParkingControl(String vehicleDataArrived, String vehicleType, String licensePlate, int engine, boolean isParking) {
         this.vehicleDataArrived = vehicleDataArrived;
         this.vehicleType = vehicleType;
         this.licensePlate = licensePlate;
         this.engine = engine;
         this.isParking = isParking;
-    }
-
-    public ParkingControl(Long id, Date vehicleDataArrived, String vehicleType, String licensePlate,int engine, boolean isParking, int totalHours, double valueToPay, Date vehicleDataOut) {
-        this.id = id;
-        this.vehicleDataArrived = vehicleDataArrived;
-        this.vehicleType = vehicleType;
-        this.licensePlate = licensePlate;
-        this.engine = engine;
-        this.isParking = isParking;
-        this.totalHours = totalHours;
-        this.valueToPay = valueToPay;
-        this.vehicleDataOut = vehicleDataOut;
     }
 
     public ParkingControl() {
@@ -61,12 +48,12 @@ public class ParkingControl {
         this.id = id;
     }
 
-    public Date getVehicleDataArrived() {
+    public String getVehicleDataArrived() {
 
         return vehicleDataArrived;
     }
 
-    public void setVehicleDataArrived(Date vehicleDataArrived) {
+    public void setVehicleDataArrived(String vehicleDataArrived) {
         this.vehicleDataArrived = vehicleDataArrived;
     }
 
@@ -118,11 +105,11 @@ public class ParkingControl {
         this.valueToPay = valueToPay;
     }
 
-    public Date getVehicleDataOut() {
+    public String getVehicleDataOut() {
         return vehicleDataOut;
     }
 
-    public void setVehicleDataOut(Date vehicleDataOut) {
+    public void setVehicleDataOut(String vehicleDataOut) {
         this.vehicleDataOut = vehicleDataOut;
     }
 }

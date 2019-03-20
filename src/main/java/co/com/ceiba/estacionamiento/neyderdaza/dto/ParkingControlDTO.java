@@ -1,15 +1,14 @@
 package co.com.ceiba.estacionamiento.neyderdaza.dto;
 
-import java.util.Date;
 
 public class ParkingControlDTO {
-        private Date vehicleDataArrived;
+        private String vehicleDataArrived;
         private String vehicleType;
         private String licensePlate;
         private int engine;
         private boolean isParking;
 
-    public Date getVehicleDataArrived() {
+    public String getVehicleDataArrived() {
         return vehicleDataArrived;
     }
 
