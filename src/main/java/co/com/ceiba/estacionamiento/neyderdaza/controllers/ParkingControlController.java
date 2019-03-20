@@ -3,7 +3,6 @@ package co.com.ceiba.estacionamiento.neyderdaza.controllers;
 import co.com.ceiba.estacionamiento.neyderdaza.domain.ParkingControl;
 import co.com.ceiba.estacionamiento.neyderdaza.dto.ParkingControlDTO;
 import co.com.ceiba.estacionamiento.neyderdaza.services.ParkingService;
-import co.com.ceiba.estacionamiento.neyderdaza.utils.ParkingControlException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

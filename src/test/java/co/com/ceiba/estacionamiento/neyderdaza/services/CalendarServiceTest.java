@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,7 +13,6 @@ import java.util.GregorianCalendar;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
-
 public class CalendarServiceTest {
 
     @Mock
