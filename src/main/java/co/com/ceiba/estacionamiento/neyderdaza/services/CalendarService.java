@@ -12,7 +12,7 @@ import java.util.Locale;
 
 @Service
 public class CalendarService {
-    private DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+    private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     protected CalendarService() {
     }

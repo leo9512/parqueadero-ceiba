@@ -63,6 +63,7 @@ public class ParkingService {
 
     public ParkingControl enterVehicle(ParkingControl parkingControl) {
         validateParkingConditions(parkingControl);
+        parkingControl.setVehicleDataArrived(calendarService.getActualDate());
         return parkingControlRepository.save(parkingControl);
     }
 

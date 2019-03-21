@@ -24,7 +24,4 @@ public class ParkingControlDTO {
         return engine;
     }
 
-    public boolean isParking() {
-        return isParking;
-    }
 }

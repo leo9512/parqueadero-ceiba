@@ -47,9 +47,8 @@ public class ParkingControlController {
     @PostMapping("/addVehicle")
     ParkingControl enterVehicle(@RequestBody ParkingControlDTO dto){
         ParkingControl parkingControl = new ParkingControl();
-        parkingControl.setVehicleDataArrived(dto.getVehicleDataArrived());
         parkingControl.setEngine(dto.getEngine());
-        parkingControl.setParking(dto.isParking());
+        parkingControl.setParking(true);
         parkingControl.setVehicleType(dto.getVehicleType());
         parkingControl.setLicensePlate(dto.getLicensePlate());
         return parkingService.enterVehicle(parkingControl);
