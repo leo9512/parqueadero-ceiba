@@ -26,7 +26,7 @@ public class CalendarServiceTest {
     @Test
     public void verifyGetActualDayIsCorrectly(){
         //Arrange
-        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String expected = dateFormat.format(Calendar.getInstance().getTime());
 
         //Act
@@ -71,7 +71,7 @@ public class CalendarServiceTest {
         Date expected = initialCalendarDate.getTime();
 
         //Act
-        Date result = calendarService.stringToDate("19-mar-2019 12:30:30");
+        Date result = calendarService.stringToDate("19-03-2019 12:30:30");
         //Assert
         assertEquals(expected,result);
     }
