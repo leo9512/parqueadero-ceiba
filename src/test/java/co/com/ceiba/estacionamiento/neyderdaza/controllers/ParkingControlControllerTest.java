@@ -51,7 +51,7 @@ public class ParkingControlControllerTest {
 
 
         mockMvc.perform(get("/vehiclesInParking"))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].licensePlate").value("ABC123"));
 
     }

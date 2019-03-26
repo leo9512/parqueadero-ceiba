@@ -18,7 +18,7 @@ public class ParkingControlController {
     }
 
     @CrossOrigin
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/vehiclesInParking")
     List<ParkingControl> getVehiclesParking(){
         return parkingService.findVehiclesAreParked();
