@@ -29,16 +29,8 @@ public class ParkingControlController {
     @PatchMapping("/upDateVehicle/{id}")
     @ResponseBody
     ParkingControl outVehicle(@PathVariable Long id){
-        ParkingControl parkingControl1 = new ParkingControl();
-        Optional<ParkingControl> parkingConsult = parkingService.findVehicle(id);
-        if(parkingConsult.isPresent()){
-            parkingControl1= parkingConsult.get();
-        }
-        else {
-            return parkingControl1;
-        }
-
-        return parkingService.outsideVehicle(parkingControl1);
+        ParkingControl parkingControl1  = parkingService.findVehicle(id);
+         return parkingService.outsideVehicle(parkingControl1);
     }
 
     @CrossOrigin
@@ -46,11 +38,6 @@ public class ParkingControlController {
     @ResponseBody
     @PostMapping("/addVehicle")
     ParkingControl enterVehicle(@RequestBody ParkingControlDTO dto){
-        ParkingControl parkingControl = new ParkingControl();
-        parkingControl.setEngine(dto.getEngine());
-        parkingControl.setParking(true);
-        parkingControl.setVehicleType(dto.getVehicleType());
-        parkingControl.setLicensePlate(dto.getLicensePlate());
-        return parkingService.enterVehicle(parkingControl);
+        return parkingService.enterVehicle(dto);
     }
 }

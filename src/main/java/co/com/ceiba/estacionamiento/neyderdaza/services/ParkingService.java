@@ -1,6 +1,7 @@
 package co.com.ceiba.estacionamiento.neyderdaza.services;
 
 import co.com.ceiba.estacionamiento.neyderdaza.domain.ParkingControl;
+import co.com.ceiba.estacionamiento.neyderdaza.dto.ParkingControlDTO;
 import co.com.ceiba.estacionamiento.neyderdaza.repositories.ParkingControlRepository;
 import co.com.ceiba.estacionamiento.neyderdaza.utils.ParkingControlException;
 import org.springframework.stereotype.Service;
@@ -57,11 +58,21 @@ public class ParkingService {
 
     }
 
-    public Optional<ParkingControl> findVehicle(Long id) {
-        return parkingControlRepository.findById(id);
+    public ParkingControl findVehicle(Long id) {
+        ParkingControl parkingControl1 = new ParkingControl();
+        Optional<ParkingControl> parkingConsult = parkingControlRepository.findById(id);
+        if(parkingConsult.isPresent()){
+            parkingControl1= parkingConsult.get();
+        }
+        return parkingControl1;
     }
 
-    public ParkingControl enterVehicle(ParkingControl parkingControl) {
+    public ParkingControl enterVehicle(ParkingControlDTO dto) {
+        ParkingControl parkingControl = new ParkingControl();
+        parkingControl.setEngine(dto.getEngine());
+        parkingControl.setParking(true);
+        parkingControl.setVehicleType(dto.getVehicleType());
+        parkingControl.setLicensePlate(dto.getLicensePlate());
         validateParkingConditions(parkingControl);
         parkingControl.setVehicleDataArrived(calendarService.getActualDate());
         return parkingControlRepository.save(parkingControl);

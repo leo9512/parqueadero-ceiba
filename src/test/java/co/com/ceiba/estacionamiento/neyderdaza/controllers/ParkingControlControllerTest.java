@@ -134,13 +134,8 @@ public class ParkingControlControllerTest {
         String content = result.getResponse().getContentAsString();
         Gson transformer = new Gson();
         ParkingControl p = transformer.fromJson(content, ParkingControl.class);
-        System.out.println(p.getVehicleType());
+        System.out.println(p);
         //Assert
-        assertTrue(p.getVehicleType() == null);
-        assertTrue(p.getLicensePlate()==null);
-        assertTrue(p.getVehicleDataArrived()==null);
-        assertTrue(p.getVehicleDataOut()==null);
-        assertTrue(p.isParking()==false);
-        assertTrue(p.getId()==null);
+        assertTrue(p == null);
     }
 }

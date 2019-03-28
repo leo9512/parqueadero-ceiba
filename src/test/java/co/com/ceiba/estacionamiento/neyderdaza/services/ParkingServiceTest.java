@@ -1,6 +1,7 @@
 package co.com.ceiba.estacionamiento.neyderdaza.services;
 
 import co.com.ceiba.estacionamiento.neyderdaza.domain.ParkingControl;
+import co.com.ceiba.estacionamiento.neyderdaza.dto.ParkingControlDTO;
 import co.com.ceiba.estacionamiento.neyderdaza.repositories.ParkingControlRepository;
 import co.com.ceiba.estacionamiento.neyderdaza.utils.ParkingControlException;
 import co.com.ceiba.estacionamiento.neyderdaza.utils.Vehicles;
@@ -11,6 +12,7 @@ import org.mockito.Mockito;
 import java.util.*;
 
 import static co.com.ceiba.estacionamiento.neyderdaza.builder.ParkingControlTestDataBuilder.aParkingControl;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
@@ -230,10 +232,10 @@ public class ParkingServiceTest {
         parkingService = new ParkingService(parkingControlRepository, calendarService, parkingCalculationService);
 
         //Act
-        Optional<ParkingControl> result = parkingService.findVehicle(30L);
+        ParkingControl result = parkingService.findVehicle(30L);
 
         //Assert
-        assertEquals(parkingControl,result.get());
+        assertEquals(parkingControl,result);
     }
 
     @Test
@@ -246,10 +248,10 @@ public class ParkingServiceTest {
         parkingService = new ParkingService(parkingControlRepository, calendarService, parkingCalculationService);
 
         //Act
-        Optional<ParkingControl> result = parkingService.findVehicle(30L);
+        ParkingControl result = parkingService.findVehicle(30L);
 
         //Assert
-        assertFalse(result.isPresent());
+        assertTrue(result.getVehicleType() == null);
     }
 
     @Test
@@ -304,23 +306,27 @@ public class ParkingServiceTest {
     @Test
     public void IfVehicleSatisfyTheEntryConditionsThenAllowEntry(){
         //Arrange
+        ParkingControlDTO dto = new ParkingControlDTO();
+        dto.setEngine(150);
+        dto.setLicensePlate("PCD123");
+        dto.setVehicleType("CAR");
+        dto.setParking(true);
         parkingControl = aParkingControl()
-                .withLicensePlate("ACD123")
+                .withLicensePlate("PCD123")
                 .withVehicleType("CAR")
                 .withEngine(150)
                 .withIsParking(true)
                 .build();
 
         parkingControlRepository = Mockito.mock(ParkingControlRepository.class);
-        given(parkingControlRepository.save(parkingControl))
-                .willReturn(parkingControl);
+        when(parkingControlRepository.save(any(ParkingControl.class))).thenReturn(parkingControl);
         parkingService = new ParkingService(parkingControlRepository, calendarService, parkingCalculationService);
         ParkingService parkingServiceSpy = Mockito.spy(parkingService);
         doReturn(true).when(parkingServiceSpy).validateParkingConditions(parkingControl);
 
         //Act
-        ParkingControl result = parkingServiceSpy.enterVehicle(parkingControl);
+        ParkingControl result = parkingServiceSpy.enterVehicle(dto);
         //Assert
-        assertEquals(parkingControl,result);
+        assertEquals(dto.getLicensePlate(),result.getLicensePlate());
     }
 }
