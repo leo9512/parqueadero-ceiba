@@ -25,7 +25,7 @@ public class ParkingControlTestDataBuilder {
 
     public ParkingControlTestDataBuilder(){
         this.id = 20L;
-        this.vehicleDataArrived = "2019-3-20 07:12:39";
+        this.vehicleDataArrived = "27-3-2019 07:12:39";
         this.vehicleType = "CAR";
         this.licensePlate = "ABC123";
         this.engine = 600;

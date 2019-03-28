@@ -310,7 +310,6 @@ public class ParkingServiceTest {
         dto.setEngine(150);
         dto.setLicensePlate("PCD123");
         dto.setVehicleType("CAR");
-        dto.setParking(true);
         parkingControl = aParkingControl()
                 .withLicensePlate("PCD123")
                 .withVehicleType("CAR")
